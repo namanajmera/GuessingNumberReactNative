@@ -4,15 +4,23 @@ import PrimaryButtons from '../components/PrimaryButtons'
 export default function StartGameScreen() {
   return (
     <View style={styles.inputContainer}>
-      <TextInput style={styles.numberInput} maxLength={2} keyboardType="number-pad" autoCapitalize='none' autoCorrect={false}/>
-      <PrimaryButtons>Reset</PrimaryButtons>
-      <PrimaryButtons>Confirm</PrimaryButtons>
+      <TextInput style={styles.numberInput} maxLength={2} keyboardType="number-pad" autoCapitalize='none' autoCorrect={false} />
+      <View style={styles.buttonsContainer}>
+        <View style={styles.buttonContainer}>
+          <PrimaryButtons>Reset</PrimaryButtons>
+        </View>
+        <View style={styles.buttonContainer}>
+          <PrimaryButtons>Confirm</PrimaryButtons>
+        </View>
+      </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   inputContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 100,
     marginHorizontal: 40,
     borderRadius: 8,
@@ -34,5 +42,13 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontWeight: 'bold',
     textAlign: 'center'
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonContainer:{
+    flex:1,
+    marginHorizontal:5,
   }
 })
