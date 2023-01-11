@@ -5,10 +5,22 @@ import GameScreen from "./screens/GameScreen";
 import { useState } from "react";
 import Colors from "./constants/colors";
 import GameOverScreen from "./screens/GameOverScreen";
+import {useFonts} from 'expo-font'
+// import AppLoading from 'expo-app-loading';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
+
+  const [fontsLoaded] = useFonts({
+    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+  })
+
+  // if (!fontsLoaded) {
+  //   SplashScreen.preventAutoHideAsync()
+  //   return <AppLoading/>
+  // }
 
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);  
