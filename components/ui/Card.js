@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       alignItems: "center",
       marginTop: 36,
-      marginHorizontal: 40,
+      marginHorizontal: 20,
       borderRadius: 8,
       padding: 16,
       elevation: 4,
