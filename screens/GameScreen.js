@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButtons from "../components/ui/PrimaryButtons";
+import Card from "../components/ui/Card";
+import InstructionsText from "../components/ui/InstructionsText";
 
 
 let minBoundry = 1;
@@ -37,7 +39,7 @@ export default function GameScreen({ userNumber, gameOverHandler }) {
   }
 
   const [title, setTitle] = useState("Opponent's Guess");
-  const initialGuess = generateRandomBeteen(minBoundry, maxBoundry, userNumber);
+  const initialGuess = generateRandomBeteen(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
 
   useEffect(() => {
@@ -51,13 +53,13 @@ export default function GameScreen({ userNumber, gameOverHandler }) {
     <View style={styles.screen}>
       <Title title={title} />
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or lower</Text>
+      <Card>
+        <InstructionsText>Higher or lower?</InstructionsText>
         <View>
           <PrimaryButtons onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButtons>
           <PrimaryButtons onPress={() => nextGuessHandler('greater')}>+</PrimaryButtons>
         </View>
-      </View>
+      </Card>
       {/* <View>
         <Text>Log Rounds</Text>
       </View> */}
