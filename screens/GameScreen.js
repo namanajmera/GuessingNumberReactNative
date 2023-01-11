@@ -1,5 +1,5 @@
 import { Alert, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButtons from "../components/ui/PrimaryButtons";
@@ -17,12 +17,12 @@ const generateRandomBeteen = (min, max, exclude) => {
   }
 }
 
-export default function GameScreen({ userNumber }) {
+export default function GameScreen({ userNumber, gameOverHandler }) {
 
   const nextGuessHandler = (direction) => {
     if ((direction === 'lower' && currentGuess < userNumber) || (direction === 'greater' && currentGuess > userNumber)) {
       Alert.alert("Don't lie!", 'You know that this is wrong...', [
-        {text: 'Sorry!', style:'cancel'}
+        { text: 'Sorry!', style: 'cancel' }
       ])
       return;
     }
@@ -32,12 +32,20 @@ export default function GameScreen({ userNumber }) {
       minBoundry = currentGuess + 1;
     }
     const newRndNumber = generateRandomBeteen(minBoundry, maxBoundry, currentGuess);
+    console.log('newRndNumber', newRndNumber);
     setCurrentGuess(newRndNumber);
   }
 
   const [title, setTitle] = useState("Opponent's Guess");
   const initialGuess = generateRandomBeteen(minBoundry, maxBoundry, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      gameOverHandler();
+    }
+  }, [currentGuess, userNumber, gameOverHandler])
+
 
   return (
     <View style={styles.screen}>
